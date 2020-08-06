@@ -32,7 +32,7 @@ export class RepublicaPage implements OnInit {
   ngOnInit() {
     this.listComment(this.republic_id);
   }
-
+    // Função listar comentários vindos do bd na página
   listComment(republic_id) {
     this.commentService.listComment(republic_id).subscribe(
       (res) => {
@@ -43,7 +43,7 @@ export class RepublicaPage implements OnInit {
       }
     );
   }
-
+  // Função enviar comentário
   sendComment(form){
     console.log(form);
     console.log(form.value);
@@ -52,24 +52,24 @@ export class RepublicaPage implements OnInit {
     let name = localStorage.getItem('username'); // não precisa do JSON.parse pois é uma string, não um objeto.
     body.username = name;
 
-    this.commentService.postComment(body).subscribe(
+    this.commentService.postComment(body).subscribe( // Chama a função da commentService. O subscribe diz ao front que ele está aguardando uma requisição do back
       (res) => {
         console.log(res);
         this.listComment(this.republic_id);
-        this.commentForm.reset();
+        this.commentForm.reset(); // Limpa o campo de comentário que foi escrito assim que ele chega no bd.
       }, (err) => {
         console.log(err);
       } //verificar se ele teve alguma resposta ou se deu algum erro de requisição no back.
 
     );
   }
-  
-  toggleEdit(id){
+  // Funciona como um "gatilho" que ativa o modo de edição
+  toggleEdit(id){ 
     this.editMode = true;
     this.commentId = id;
     console.log(id);
   }
-
+  // Função editar comentário
   sendEditComment(form){
     console.log(form);
     console.log(form.value);
@@ -84,7 +84,7 @@ export class RepublicaPage implements OnInit {
       }
     );
   }
-
+  // Função deletar comentário
   deleteComment(id){
     this.commentService.deleteComment(id).subscribe(
       (res) => {
