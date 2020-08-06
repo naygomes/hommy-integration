@@ -56,6 +56,7 @@ export class RepublicaPage implements OnInit {
       (res) => {
         console.log(res);
         this.listComment(this.republic_id);
+        this.commentForm.reset();
       }, (err) => {
         console.log(err);
       } //verificar se ele teve alguma resposta ou se deu algum erro de requisição no back.
@@ -77,6 +78,7 @@ export class RepublicaPage implements OnInit {
       (res) => {
         console.log(res);
         this.listComment(this.republic_id);
+        this.editCommentForm.reset();
       }, (err) => {
         console.log(err);
       }
